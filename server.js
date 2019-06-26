@@ -19,10 +19,22 @@ app.use(express.static("public"));
 app.get("/scrape", function(req,res){
     axios.get("https://www.bbc.com/").then(function(response){
         var $ = cheerio.load(response.data);
-        $("article h3").each(function(i, element){
-            var result ={};
+        var result =[];
+        $("h3.media__title").each(function(i, element){
             result.title = $(this).children("a").text();
+            result.summary=$(this).children("").attr();
             result.link = $(this).children("a").attr("href");
-        })
-    })
-})
+            db.Article.create(result).then(function(dbArticle){
+            console.log(dbArticle);
+            })
+            .catch(function(err){
+                console.log(err);
+            });
+        });
+        res.send("Scraped!")
+    });
+});
+
+app.get("/articles"), function(req, res){
+
+}
