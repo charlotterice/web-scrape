@@ -11,8 +11,8 @@ var request = require("request");
 
 // Mongoose
 
-var Note = require("./models/Note");
-var Article = require("./models/Article");
+var Note = require("./Note");
+var Article = require("./article");
 var databaseUrl = 'mongodb://localhost/scrap';
 
 if (process.env.MONGODB_URI) {
