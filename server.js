@@ -31,20 +31,19 @@ mongoose.connect(MONGODB_URI,{useNewUrlParser:true});
 // Routes
 
 // A GET route for scraping the onion website
-app.get("/scrape", function(req, res) {
+app.get("/", function(req, res) {
   // First, we grab the body of the html with axios
   axios.get("http://www.theonion.com/").then(function(response) {
     // Then, we load that into cheerio and save it to $ for a shorthand selector
     var $ = cheerio.load(response.data);
 
     // Now, we grab every h2 within an article tag, and do the following:
-    $("article").each(function(i, element) {
+    $("article h1").each(function(i, element) {
       // Save an empty result object
       var result = {};
 
       // Add the text and href of every link, and save them as properties of the result object
       result.title = $(this)
-        .children()
         .text();
       result.link = $(this)
         .children("a")
