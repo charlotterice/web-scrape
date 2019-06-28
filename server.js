@@ -28,6 +28,9 @@ app.use(express.static("public"));
 // Connect to the Mongo DB
 var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/scrapedb";
 mongoose.connect(MONGODB_URI,{useNewUrlParser:true});
+
+app.engine("handlebars", handlebars({ defaultLayout: "main" }));
+app.set("view engine", "handlebars");
 // Routes
 
 // A GET route for scraping the onion website
