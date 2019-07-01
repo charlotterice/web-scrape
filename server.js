@@ -63,7 +63,7 @@ app.get("/", function(req, res) {
           console.log(err);
         });
     });
-
+console.log(results);
     // Send a message to the client
     // res.send("Scrape Complete");
     // res.render("index");
