@@ -2,11 +2,9 @@
 
     $.getJSON("/articles", function (data) {
         for (var i = 0; i < data.length; i++) {
-            $("#articles").append("<h5 data-id='" + data[i]._id + "'>" +  data[i].title + "<br />" + "http://www.theonion.com/" + data[i].link + "</h5>");
-        }
-    });
+            $("#articles").append("<h1 data-id='" + data[i]._id + "'>" +  data[i].title + "<br />" + "http://www.theonion.com/" + data[i].link + "</h1>");
 
-$(document).on("click", "h5", function(){
+$(document).on("click", "h1", function(){
   $("#notes").empty();
   var thisID = $(this).attr("data-id");
 })
@@ -46,7 +44,7 @@ var thisID = $(this).attr("data-id");
 // Post request to update the note
 $.ajax({
   method: "POST",
-  url: "/stories/" + thisID,
+  url: "/articles/" + thisID,
   data: {
     title: $("#titleinput").val(),
     body: $("#bodyinput").val()
@@ -61,4 +59,4 @@ $.ajax({
 // Remove all the values entered by the user
 $("#titleinput").val("");
 $("#bodyinput").val("");
-});
+});}});
