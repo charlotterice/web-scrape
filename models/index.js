@@ -1,6 +1,6 @@
 // Exporting an object containing all of our models
 
 module.exports = {
-  Article: require("web-scrape/models/Article"),
+  Article: require("./Article"),
   Note: require("./Note")
 };
